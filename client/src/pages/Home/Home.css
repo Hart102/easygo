@@ -1,0 +1,27 @@
+:root{
+    --White: #fff;
+    --Blue-color: #0D60D8;
+    --LightAsh: #555;
+}
+p{
+    color: var(--LightAsh);
+}
+button{
+    transition: 0.7s;
+    border-radius: 10px !important;
+}
+button:hover{
+    transition: 0.7s;
+    color: var(--White) !important;
+    background: var(--Blue-color) !important;
+    transform: translateY(-5px);
+}
+.cards{
+    transition: 0.7s;
+}
+.cards:hover{
+    transform: translateY(-5px);
+}
+nav .nav-link:hover, a:hover{
+    color: var(--Blue-color) !important;
+}
