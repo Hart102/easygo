@@ -7,7 +7,6 @@ import SocialIcons from './SocialIcons'
 import { Data } from '../../component/DataManager/PostData'
 import axios from 'axios'
 import * as Helper from '../../component/HelperFunction/Helper'
-// import { useSelector } from 'react-redux'
 
 const SignIn = () => {    
   axios.defaults.withCredentials = true
@@ -25,14 +24,6 @@ const SignIn = () => {
   const[serverMsg, setServerMsg] = useState('')
   const[phone_number, setPhone_number] = useState('')
   const[user_password, setPwd] = useState('')
-
-  // const verify_phone = (number) => {
-  //   let phone = number
-  //   let tester = /[A-Za-z]/ig
-  //   let result = phone.match(tester)
-  //   if(result !== null) return 'Invalid phone number'
-  //   return true
-  // }
 
   useEffect(() => {
     Helper.session_verifier().then(res => {

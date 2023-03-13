@@ -1,12 +1,14 @@
 import AnchorTag from './AnchorTag'
 import Button from './Button'
 import { useEffect, useState } from 'react'
-import MenuIcon from './DashboardComp/FooterMenu/MenuIcon'
+import MenuIcon from '../pages/UserDashboard/DashboardComp/FooterMenu/MenuIcon'
 import * as Helper from './HelperFunction/Helper'
 
 const Navbar = ({
     signInAction,
-    signUpAction
+    signUpAction,
+    scrollToAbout,
+    scrollToContact
 }) => {
     const [scroll, setScroll] = useState(false)
     const[session, setSession] = useState(false)
@@ -29,14 +31,13 @@ const Navbar = ({
                 <h4 className="fw-bold d-lg-none d-block">EasyGo.com</h4>
                 <div className="d-lg-flex d-none text-center d-none">
                     <AnchorTag location='/' classes='nav-link fw-bold' text='Home'/>
-                    <AnchorTag func={() =>
-                        Helper.scrollToView(Helper.singleSelector('#About'))}
+                    <AnchorTag func={scrollToAbout}
                         classes='nav-link fw-bold' 
                         text='About'
                     />
                     <AnchorTag 
-                        // func={() => Helper.scrollToView(Helper.singleSelector('#contact'))}
-                        location={'/payment'}
+                        func={scrollToContact}
+                        location={'/'}
                         classes='nav-link fw-bold' 
                         text='Contact'
                     />

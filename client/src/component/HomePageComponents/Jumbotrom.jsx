@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Button from "../Button"
 import * as Helper from '../HelperFunction/Helper'
-import { PaystackHook } from "../../pages/Payment/PaymentConfig"
 
 const Jumbotrom = () => {
     const navigation = useNavigate()
@@ -54,7 +53,8 @@ const Jumbotrom = () => {
                             classes={'text-decoration-none fw-bold px-2 py-1 btn border'} 
                             text={'Fund your wallet'}
                             func={() => {
-                                Helper.session_verifier().then(res => res ? useNavigate('/user/login') : useNavigate('/user/login'))
+                                Helper.session_verifier().then(res => res[0] ? 
+                                    navigation('/payment') : navigation('/user/login'))
                             }}
                         />
                         <i className="fa fa-arrow-right mx-2"></i>

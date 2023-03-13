@@ -1,5 +1,5 @@
 import './Home.css'
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import Navbar from "../../component/Navbar"
 import Jumbotrom from "../../component/HomePageComponents/Jumbotrom"
 import Button from "../../component/Button"
@@ -7,19 +7,14 @@ import Card from "../../component/HomePageComponents/Card/Card"
 import RowTemplate from '../../component/HomePageComponents/RowTemplate/RowTemplate'
 import Footer from "../../component/Footer"
 import Contact from '../../component/HomePageComponents/Contact/Contact'
-import { Data } from '../../component/DataManager/PostData'
 import { useNavigate } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
-// import { addUser } from '../../Redux/Users'
-
+import { write_up } from './Contents'
 
 const Home = () => {
   const navigation = useNavigate()
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   Data().RecieveData('http://localhost:5000/api/user_session')
-  //   .then(res => dispatch(addUser(res.data)))
-  // },[])
+  const AboutRef = useRef(null)
+  const contactRef = useRef(null)
+
   
 
   return (
@@ -27,6 +22,8 @@ const Home = () => {
       <Navbar 
         signInAction={() => navigation('/user/login')}
         signUpAction={() => navigation('/user/login')}
+        scrollToAbout={() => AboutRef.current?.scrollIntoView({behavior: 'smooth'})}
+        scrollToContact={() => contactRef.current?.scrollIntoView({behavior: 'smooth'})}
       />
       <Jumbotrom />
       <section className="py-lg-5">
@@ -43,30 +40,14 @@ const Home = () => {
             </div>
             <div className="col-md-8 px-lg-0 px-4 mx-md-auto">
               <div className="d-flex flex-wrap g-3">
-                <Card 
-                  img={'fa-phone'}
-                  title={'Airtime'}
-                  text={'Enjoy as much as 3% discount on airtime purchase on our platform. We offer VTU airtime for MTN, Glo, Airtel and 9mobile.'}
-                  linkText={'Buy Airtime'}
-                />
-                <Card 
-                  img={'fa-phone'}
-                  title={'Data'}
-                  text={"Buy and resell cheap data on Easyon and make money with us. We offer the cheapest data bundles for all networks."}
-                  linkText={'Buy Data'}
-                />
-                <Card 
-                  img={'fa-phone'}
-                  title={'Cable TV'}
-                  text={'Don’t miss that TV programme. Subscribe your Cable TV (DSTv, GOTv & Startimes) at the cheapest price. Instant activation!.'}
-                  linkText={'Subscribe Cable TV'}
-                />
-                <Card 
-                  img={'fa-phone'}
-                  title={'Electricity'}
-                  text={'Pay and get your token instantly via SMS, email etc.'}
-                  linkText={'Pay Bills'}
-                />
+                {write_up.map(content => 
+                  <Card 
+                    img={content.icon} 
+                    title={content.title} 
+                    text={content.text} 
+                    linkText={content.linkText}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -79,7 +60,7 @@ const Home = () => {
         classname='lh-lg'
       />
       {/*--------About --------*/}
-      <section style={{background: '#F9F9F9'}}>
+      <section style={{background: '#F9F9F9'}} ref={AboutRef}>
         <RowTemplate 
           img='./images/VTU.ng-User.jpg' 
           title='About Us!' 
@@ -88,7 +69,7 @@ const Home = () => {
         />
       </section>
       {/*-------Contact Form-------*/}
-      <Contact />
+      <section ref={contactRef}><Contact /></section>
       {/* ---------Customers---------*/}
       <section>
           <div className="col-md-6 my-lg-0 my-5 mx-auto p-lg-5 px-4 text-center">

@@ -3,6 +3,10 @@
     --Blue-color: #0D60D8;
     --LightAsh: #555;
 }
+input:focus{
+    border: none !important;
+    box-shadow: none !important;
+}
 p{
     color: var(--LightAsh);
 }

@@ -44,6 +44,18 @@ const user_login = (req, res) => {// User Login
     })
 };
 
+const edit_email = (req, res) => {// Edit email
+    if(req.body){
+        const { phone, email } = req.body
+        const updateMail = `UPDATE users SET email ="${email}" WHERE phone=${phone}`
+        DbConn.query(updateMail, (err, result) => {
+            if(err) return res.json('Something went wrong while editing plase try again')
+            if(result.affectedRows) return res.json(true)
+            return res.json('Cannot edit email, please try again.')
+        })
+    }
+}
+
 const user_session = (req, res) => res.json(current_user) //verify user session
 const user_logout = (req, res) => {req.session.destroy(); return current_user = '';}
 
@@ -51,5 +63,6 @@ module.exports = {
     sign_up,
     user_login,
     user_session,
+    edit_email,
     user_logout
 }

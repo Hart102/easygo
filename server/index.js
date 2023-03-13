@@ -27,6 +27,7 @@ app.use(session({
 // Routes 
 app.post('/api/sign_up',  Controllers.sign_up) // user authentication routes
 app.post('/api/user_login',  Controllers.user_login)
+app.post('/api/edit_email', Controllers.edit_email)
 app.get('/api/user_session', Controllers.user_session)
 app.post('/api/user_logout', Controllers.user_logout)
 

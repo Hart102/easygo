@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import * as Helper from '../../component/HelperFunction/Helper'
-import Header from '../../component/DashboardComp/Header'
-import Menu from '../../component/DashboardComp/Menu'
-import Services from '../../component/DashboardComp/Services'
-import MenuIcon from '../../component/DashboardComp/FooterMenu/MenuIcon'
+import Header from './DashboardComp/Header'
+import Menu from './DashboardComp/Menu'
+import Services from './DashboardComp/Services'
+import MenuIcon from './DashboardComp/FooterMenu/MenuIcon'
 import Model from './Model/Model'
 import { Data } from '../../component/DataManager/PostData'
+// import Profile from './UserProfile/Profile'
 
 const Dashboard = () => {
   const navigation = useNavigate()
   const[msg, setMsg] = useState('')
+  const[user, setUser] = useState('')
 
   useEffect(() => {
     Helper.session_verifier().then(res => res[0] ? 
-      navigation('/user/dashboard') : navigation('/user/login'))
+      setUser(res[0]) : navigation('/user/login'))
   },[])
 
   return ( //EDEDF5
     <>
-    <Header action={() => Helper.modelAction(setMsg).openModel("Are you sure want to logout ?")}/>
+    {/* <Header /> */}
+    <Header userName={user.username} 
+      action={() => Helper.modelAction(setMsg).openModel("Are you sure want to logout ?")}
+    />
     <section 
       className="container bg-white px-lg-5" 
       style={{
@@ -32,16 +37,8 @@ const Dashboard = () => {
         <main>
           <p className='mx-4 mx-lg-0'>Services</p>
           <div className="d-flex justify-content-around justify-content-lg-between">
-            <Services 
-              text={'Airtime Recharge'} 
-              btnText={'BUY NOW'} 
-              background={'#F8B431'}
-            />
-            <Services 
-              text={'Data Services'} 
-              btnText={'BUY NOW'} 
-              background={'#66CD71'}
-            />
+            <Services />
+            <Services />
           </div>
         </main>
         <section className='mt-5'>
@@ -60,7 +57,7 @@ const Dashboard = () => {
           maxWidth: "100%", 
           background: '#EDEDF5'
         }}>
-          <div className="container d-flex justify-content-between px-lg-5">
+          <div className="container d-flex1 d-none justify-content-between px-lg-5">
             <MenuIcon 
               location={'/'} 
               iconName={'fa fa-home'} 
@@ -77,7 +74,7 @@ const Dashboard = () => {
               text={'Send'}
             />
             <MenuIcon 
-              location={'/'} 
+              location={'/user/dashboard/profile'} 
               iconName={'fa fa-user'} 
               text={'Prifile'}
             />
@@ -92,6 +89,8 @@ const Dashboard = () => {
       }}
       negativeAction={(e) => Helper.modelAction(setMsg).closeModel()}
     />
+    {/* <Profile /> */}
+    <Outlet />
     </>
   )
 }

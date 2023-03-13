@@ -21,11 +21,10 @@ export const modelAction = (output) => {// Pop up model function
   }
 }
 
-export const scrollToView = (component) => {
-  if(component){
-    component.scrollTo({ behavior: 'smooth' })
-  }
-} 
+export const hideBalance = (element) => {
+  if(singleSelector(element).type === 'password') return singleSelector(element).type = 'text'
+  return singleSelector(element).type = 'password'
+}
 
 export const verify_phone = (number) => {// Phone number validator
   let phone = number, find_characters, find_special_char, result_1, result_2;

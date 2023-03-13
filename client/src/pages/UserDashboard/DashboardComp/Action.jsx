@@ -1,10 +1,11 @@
 const Action = ({
     classname,
     background,
-    text
+    text,
+    func
 }) => {
   return (
-    <div className="my-4" role="button">
+    <div className="my-4" role="button" onClick={func}>
       <div 
         className={`px-2 py-2 rounded-circle text-center text-white mx-auto`} 
         style={{background: background, width: '40px'}}>
