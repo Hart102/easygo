@@ -4,7 +4,7 @@ const conn = Mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "easy3"
+    database: "easy5"
 });
 
 let table = `CREATE TABLE users (
@@ -18,7 +18,7 @@ let table = `CREATE TABLE users (
 conn.connect((err) => {
     if(err) return console.log(err)
     console.log('Connected to database')
-    // conn.query("CREATE DATABASE easy3", (err, result) => {
+    // conn.query("CREATE DATABASE easy4", (err, result) => {
     //     err ? console.log(err) : console.log("Database Created")        
     //     conn.query(table, (err, result) => {
     //         err ? console.log('An error occured while creating table') : console.log('User table created')

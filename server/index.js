@@ -31,4 +31,4 @@ app.post('/api/edit_email', Controllers.edit_email)
 app.get('/api/user_session', Controllers.user_session)
 app.post('/api/user_logout', Controllers.user_logout)
 
-app.listen(5000, () => console.log(`App running on port 5000`))
+app.listen(4000, () => console.log(`App running on port 4000`))

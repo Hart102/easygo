@@ -2,12 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import AnchorTag from '../../../component/AnchorTag'
 import { Data } from '../../../component/DataManager/PostData'
 import * as Helper from '../../../component/HelperFunction/Helper'
+import { addUser } from '../../../Redux/Users'
+import { useSelector, useDispatch } from 'react-redux'
+// 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
 
 const Profile = () => {
     const[user, setUser] = useState('')
     const emailRef = useRef(null)
     const[swictEditBtn, setSwictEditBtn] = useState(false)
     const[editedEmail, setEditedEmail] = useState('')
+
+    const session = useSelector((state) => state.users.value)
+    console.log(session)
 
     useEffect(() => {
         Helper.session_verifier().then(res => setUser(res[0]))
@@ -57,7 +63,7 @@ const Profile = () => {
                             setSwictEditBtn(false)
                             if(editedEmail){
                                 const newUser = {...user, email: editedEmail}
-                                const response = await Data().SendData('http://localhost:5000/api/edit_email', newUser)
+                                const response = await Data().SendData('http://localhost:4000/api/edit_email', newUser)
                                 if(response.data === true) {
                                     emailRef.current.value = ''
                                     return setUser(newUser)

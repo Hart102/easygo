@@ -84,7 +84,7 @@ const Dashboard = () => {
     <Model 
       text={msg}
       positiveAction={(e) => {
-        Data().SendData('http://localhost:5000/api/user_logout')
+        Data().SendData('http://localhost:4000/api/user_logout')
         window.location.reload()
       }}
       negativeAction={(e) => Helper.modelAction(setMsg).closeModel()}
