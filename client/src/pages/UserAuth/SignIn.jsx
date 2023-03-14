@@ -1,12 +1,13 @@
 import './formStyle.css'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../../component/Navbar'
 import Button from '../../component/Button'
 import SocialIcons from './SocialIcons'
 import { Data } from '../../component/DataManager/PostData'
 import axios from 'axios'
 import * as Helper from '../../component/HelperFunction/Helper'
+
 
 const SignIn = () => {    
   axios.defaults.withCredentials = true
@@ -135,6 +136,20 @@ const SignIn = () => {
               if(Helper.verify_phone(phone) !== true){
                 setSignUpMsg(Helper.verify_phone(phone))
               }else{
+                axios.post('http://localhost:5000/api/sign_up', 
+                {phone, email, password}).then(res => {
+                  if(res.data === true) return navigation('/user/login/verify/mail')
+                  setSignUpMsg(res.data)
+                  setSignUpMsg(res.data)
+                })
+              }
+
+
+
+              return
+              if(Helper.verify_phone(phone) !== true){
+                setSignUpMsg(Helper.verify_phone(phone))
+              }else{
                 Data().SendData('http://localhost:5000/api/sign_up', 
                 {phone, email, password}).then(res => {
                   if(res.data !== true) return setSignUpMsg(res.data.replace(/\"/g, " "))
@@ -178,12 +193,10 @@ const SignIn = () => {
               func={() => signup ? setSignup(false) : setSignup(true)}
             />
           </div>
-          {/* <div className="col-md-3">
-            <img src={'../images/seller.png'} className="img-fluid image" alt="register_img" />
-          </div> */}
         </div>
       </div>
     </div>
+    <Outlet />
     </>
   )
 }

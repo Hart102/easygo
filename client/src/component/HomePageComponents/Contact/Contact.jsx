@@ -14,7 +14,7 @@ const Contact = () => {
                     <AddressComponent 
                         icon="fa-envelope" 
                         label="EMAIL" 
-                        email="easyon@gmail.com"
+                        email="easygo@gmail.com"
                     />
                     <AddressComponent 
                         icon="fa-map-marker" 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import * as Helper from '../../component/HelperFunction/Helper'
 import Header from './DashboardComp/Header'
 import Menu from './DashboardComp/Menu'
@@ -7,9 +8,11 @@ import Services from './DashboardComp/Services'
 import MenuIcon from './DashboardComp/FooterMenu/MenuIcon'
 import Model from './Model/Model'
 import { Data } from '../../component/DataManager/PostData'
+import { addUser } from '../../Redux/Users'
 // import Profile from './UserProfile/Profile'
 
 const Dashboard = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigate()
   const[msg, setMsg] = useState('')
   const[user, setUser] = useState('')
@@ -21,7 +24,6 @@ const Dashboard = () => {
 
   return ( //EDEDF5
     <>
-    {/* <Header /> */}
     <Header userName={user.username} 
       action={() => Helper.modelAction(setMsg).openModel("Are you sure want to logout ?")}
     />
@@ -83,13 +85,9 @@ const Dashboard = () => {
     </section>
     <Model 
       text={msg}
-      positiveAction={(e) => {
-        Data().SendData('http://localhost:4000/api/user_logout')
-        window.location.reload()
-      }}
-      negativeAction={(e) => Helper.modelAction(setMsg).closeModel()}
+      positiveAction={() => dispatch(addUser('logout'))} //Logout function
+      negativeAction={(e) => Helper.modelAction(setMsg).closeModel()} //Cancel logout
     />
-    {/* <Profile /> */}
     <Outlet />
     </>
   )

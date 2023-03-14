@@ -36,7 +36,7 @@ export const verify_phone = (number) => {// Phone number validator
 }
 
 export const session_verifier = () => {// Session verifier
-  return Data().RecieveData('http://localhost:4000/api/user_session')
+  return Data().RecieveData('http://localhost:5000/api/user_session')
   .then(res => {
       return res.data
   })

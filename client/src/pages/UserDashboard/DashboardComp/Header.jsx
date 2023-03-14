@@ -12,10 +12,10 @@ const DashboardHeader = ({
   return (
     <>
     {/* <!------mobile navbar------> */}
-    <nav className="fixed-top top-0 bg-white1 py-2">
+    <nav className="fixed-top top-0 bg-white py-2">
         <div className="container px-4">
             <div className="d-flex justify-content-between align-items-center">
-                <h3 className="fw-bolder">EasyGo.com</h3>
+                <h3 className="fw-bolder">EasyGoData</h3>
                 <span className="d-flex">
                   <span className="icon-hamburger col-12" 
                     role="button" onClick={() => menuAction ? setMenuAction(false): setMenuAction(true)}>

@@ -12,7 +12,7 @@ const Jumbotrom = () => {
             justify-content-between py-5 text-lg-start text-center">
             <div className="col-md-6 my-lg-5">
                 <h1 className="fw-bolder display-2">Let Us Be Your VTU Vendor.</h1>
-                <p className="my-4 fw-light">Easyon is a value added service organization that offers instant recharge of airtime and data bundle.</p>
+                <p className="my-4 fw-light">EasyGo is a value added service organization that offers instant recharge of airtime and data bundle.</p>
                 <div className="d-flex justify-content-center 
                     justify-content-lg-start align-items-center 
                     flex-lg-row flex-column my-lg-5 my-3">
@@ -47,7 +47,7 @@ const Jumbotrom = () => {
                 </div>
                 <div className="mx-lg-5 px-lg-0 px-lg-4">
                     <h1 className="fw-bold fs-1">Instant Wallet Funding</h1>
-                    <p className="fw-light">Yes, we got you covered. Enjoy easy, fast and instant funding of your wallet after payment. You will receive your personal easyon bank account details for instant funding of wallet after registration. Any payment made into the bank account gets your wallet credited automatically. </p>
+                    <p className="fw-light">Yes, we got you covered. Enjoy easy, fast and instant funding of your wallet after payment. You will receive your personal easyGo bank account details for instant funding of wallet after registration. Any payment made into the bank account gets your wallet credited automatically. </p>
                     <div className="d-flex align-items-baseline justify-content-center justify-content-lg-start">
                         <Button 
                             classes={'text-decoration-none fw-bold px-2 py-1 btn border'} 

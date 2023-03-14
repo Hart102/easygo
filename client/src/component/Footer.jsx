@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="py-5" style={{background: '#F9F9F9'}}>
         <div className="container d-lg-flex justify-content-between flex-wrap">
-            <h1 className="fw-bolder">EasyGo.com</h1>
+            <h2 className="fw-bolder">EasyGoData</h2>
             <div className="d-flex justify-content-space-around my-lg-0 my-lg-5">
                 <div>
                     <AnchorTag location='/' classes='nav-link fw-bold' text='Products'/>

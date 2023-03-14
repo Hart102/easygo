@@ -27,8 +27,8 @@ const Navbar = ({
             className={scroll ? "shadow-sm bg-white fixed-top top-0" : 
             "bg-white fixed-top top-0"}>
             <div className="container py-1 d-flex align-items- align-items-baseline justify-content-between">
-                <h2 className="fw-bolder d-lg-block d-none">EasyGo.com</h2>
-                <h4 className="fw-bold d-lg-none d-block">EasyGo.com</h4>
+                <h2 className="fw-bolder d-lg-block d-none">EasyGoData</h2>
+                <h4 className="fw-bold d-lg-none d-block">EasyGoData</h4>
                 <div className="d-lg-flex d-none text-center d-none">
                     <AnchorTag location='/' classes='nav-link fw-bold' text='Home'/>
                     <AnchorTag func={scrollToAbout}

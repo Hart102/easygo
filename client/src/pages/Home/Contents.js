@@ -8,7 +8,7 @@ export const write_up = [
     {
         icon: 'fa-phone',
         title: 'Data',
-        text: 'Buy and resell cheap data on Easyon and make money with us. We offer the cheapest data bundles for all networks.',
+        text: 'Buy and resell cheap data on EasyGo and make money with us. We offer the cheapest data bundles for all networks.',
         btnText: 'Buy Data'
     },
     {
