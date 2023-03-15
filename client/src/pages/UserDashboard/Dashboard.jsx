@@ -17,10 +17,10 @@ const Dashboard = () => {
   const[msg, setMsg] = useState('')
   const[user, setUser] = useState('')
 
-  useEffect(() => {
-    Helper.session_verifier().then(res => res[0] ? 
-      setUser(res[0]) : navigation('/user/login'))
-  },[])
+  // useEffect(() => {
+  //   Helper.session_verifier().then(res => res[0] ? 
+  //     setUser(res[0]) : navigation('/user/login'))
+  // },[])
 
   return ( //EDEDF5
     <>

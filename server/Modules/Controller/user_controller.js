@@ -10,81 +10,67 @@ const senderAuthentication = require('../Mailer/Mailer')
 const nodemailer = require('nodemailer')
 
 
-let userId = '';
-var otp = Math.floor(1000 + Math.random() * 9000);
+
 const sign_up = (req, res) => {//User Registration
+    const otp = Math.floor(1000 + Math.random() * 9000);
     const { error, value } = register.validate(req.body)
     if(error) return res.json(error.message)
-    let user_info = `INSERT INTO users(
-        username, phone, email, password, otp) VALUES (?, ?, ?, ?, ?)`
-    DbConn.query(user_info,
-        [
-            helperFunction.generate_username(value.email), 
-            value.phone, value.email, value.password, otp
-        ], (err, result) => {
-        if(err){
-            return res.json('Email or Phone number already exist')
-
+    let transport = nodemailer.createTransport({
+        service: "gmail",
+        port: 2525,
+        auth: {
+            user: "goodluckhart340",
+            pass: "mhebhgdrisoonlvl"
+        }
+    });
+    let mailOptions = {
+        from: SEND_FROM,
+        to: value.email,
+        subject: 'Verification Code From EasyGoData',
+        text: 'Hey there, it’s our first message sent with Nodemailer ',
+        html: `OTP: <h1>${otp.toString()}</h1>`,
+    };
+    transport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return res.json('Connection timeout')
         }else{
-            let transport = nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                port: 2525,
-                auth: {
-                    user: "goodluckhart340",
-                    pass: "mhebhgdrisoonlvl"
-                }
-            });
-            let mailOptions = {
-                from: SEND_FROM,
-                to: value.email,
-                subject: 'VERIFICATION CODE FROM EASYGO.COM',
-                text: 'Hey there, it’s our first message sent with Nodemailer ',
-                html: `OTP: <h1>${otp.toString()}</h1>`,
-                attachments: [
-                  {
-                    filename: 'mailtrap.png',
-                    path: __dirname + '/mailtrap.png',
-                    cid: 'uniq-mailtrap.png' 
-                  }
-                ]
-            };
-
-            transport.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  return console.log(error);
-                }
-                res.json('Message sent');
-            });
+            // Success
+            let new_user = `INSERT INTO users(
+                username, phone, email, password, otp) VALUES (?, ?, ?, ?, ?)`
+            DbConn.query(new_user, [
+                helperFunction.generate_username(value.email), 
+                value.phone, value.email, value.password, otp
+            ], (err, result) => {
+                if(err) return res.json('Email or Phone number already exist')
+                res.json(true)
+            })
         }
-
-        if(req.body.note){
-            // verify email
-        }
-
-    })
-
-
-
-    // return
-    // if(err) return res.json(error.message)
-    // let user_info = `INSERT INTO users(
-    //     username, phone, email, password, otp) VALUES (?, ?, ?, ?, ?)`
-    // DbConn.query(
-    //     user_info, 
-    //     [
-    //         helperFunction.generate_username(value.email), 
-    //         value.phone, value.email, value.password, ""
-    //     ], (err, result) => {
-    //     if(err) return res.json('Email or Phone number already exist')
-    //     let user = `SELECT * FROM users WHERE email="${value.email}"`
-    //     DbConn.query(user, (err, result) => {
-    //         if(err) return res.json('something went wrong')
-    //         res.json(true);
-    //         delete result[0].password; req.session.user = result; 
-    //         return userId = req.session.user;
-    //     })
-    // })
+    });
 };
+
+let currentUser;
+const cornfirm_email = (req, res) => {// Confrim mail
+    if(req.body.otp){
+        let user = `SELECT * FROM users WHERE email="${req.body.email}"`
+        DbConn.query(user, (err, result) => {
+            if(err) {
+                res.json('Something went wrong')
+            }else{
+                if(otp == result[0].otp){
+                    res.json(true)
+                    res.json(true)
+                    delete result[0].password; req.session.user = result;
+                    return currentUser = req.session.user;
+                }else{
+                    res.json('Invalid otp')
+                }
+            }
+        })
+    }else{
+        // Resend Otp
+        
+    }
+}
 
 
 const user_login = (req, res) => {// User Login
@@ -99,7 +85,7 @@ const user_login = (req, res) => {// User Login
         }else{
             res.json(true);
             delete result[0].password; req.session.user = result;
-            return userId = req.session.user;
+            return currentUser = req.session.user;
         }
     })
 };
@@ -113,11 +99,12 @@ const edit_email = (req, res) => {// Edit email
     })
 }
 
-const user_session = async (req, res) => res.json(userId) //verify user session
-const user_logout = (req, res) => {req.session.destroy(); return userId = '';}
+const user_session = async (req, res) => res.json(currentUser) //verify user session
+const user_logout = (req, res) => {req.session.destroy(); return currentUser = '';}
 
 module.exports = {
     sign_up,
+    cornfirm_email,
     user_login,
     user_session,
     edit_email,

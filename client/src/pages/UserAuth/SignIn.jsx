@@ -7,6 +7,7 @@ import SocialIcons from './SocialIcons'
 import { Data } from '../../component/DataManager/PostData'
 import axios from 'axios'
 import * as Helper from '../../component/HelperFunction/Helper'
+import Loader from '../../asserts/images/loader2.gif'
 
 
 const SignIn = () => {    
@@ -14,6 +15,7 @@ const SignIn = () => {
   // const userSession = useSelector((state) => state.users.value) 
   const navigation = useNavigate()
   const [signup, setSignup] = useState(false)
+  const [hideLoader, setHideLoader] = useState(false)
 
   //------Sign-up components------
   const[signUpMsg, setSignUpMsg] = useState('')
@@ -37,17 +39,17 @@ const SignIn = () => {
     <Navbar 
       signInAction={() => setSignup(false)} 
       signUpAction={() => setSignup(true)}
-    />
+      />
     <div className={
       signup ? 
       "wrapper login-container sign-up-mode" : 
       "wrapper login-container"}>
       <div className="forms-container">
         <div className="signin-signup">
-          <form action="user" className="sign-in-form mb-5">
+          <form action="user" className="sign-in-form">
             <h2 className="title1 h5 fw-light">Sign in</h2>
             <p className='fw-light text-danger text-center'>{serverMsg}</p>
-            <div className="input-field border bg-transparent mb-lg-4">
+            <div className="input-field border bg-transparent mb-lg-">
               <i className="fas fa-user"></i>
               <input 
                 type="tel" 
@@ -93,7 +95,7 @@ const SignIn = () => {
 
           {/*------Sign up Form ------*/}
           <form action="/user" className="sign-up-form mt-5">
-            <h2 className="title1 fw-light h5">Sign up</h2>
+            <h2 className="title1 h5">Sign up</h2>
             <p className='fw-light text-danger text-center'>{signUpMsg}</p>
             <div className="input-field bg-transparent border">
               <i className="fas fa-user"></i>
@@ -128,21 +130,20 @@ const SignIn = () => {
                 }}
               />
             </div>
+            
             <Button 
-              classes={phone && email && password ? 'btn btn-dark px-lg-5 my-3 rounded-pill' : 'd-none'} 
+              classes={phone && email && password ? 'btn btn-dark py-2 px-lg-5 col-6 my- rounded-pill' : 'd-none'} 
               text={'Sign up'} 
               func={(e) => {
               e.preventDefault()
               if(Helper.verify_phone(phone) !== true){
                 setSignUpMsg(Helper.verify_phone(phone))
               }else{
-                axios.post('http://localhost:5000/api/sign_up', 
-                {phone, email, password}).then(res => {
-                  if(res.data === true) return navigation('/user/login/verify/mail')
-                  setSignUpMsg(res.data)
-                  setSignUpMsg(res.data)
-                })
+                axios.post('http://localhost:5000/api/sign_up', {phone, email, password})
+                .then(res => {
+                  res.data === true ? navigation('/easygo/user/verification', {state: email}) : setSignUpMsg(res.data)})
               }
+              
 
 
 
@@ -165,11 +166,11 @@ const SignIn = () => {
           </form>
         </div>
       </div>
-      <div className="panels-container py-4">
+      <div className="panels-container py-">
         <div className="panel left-panel">
-          <div className="content col-md-9">
-            <h5>New here ?</h5>
-            <p className='fw-light'>
+          <div className="content col-md-9 mx-auto">
+            <h5 className='text-white'>New here ?</h5>
+            <p className='fw- text-white'>
               Create an account today, its easy and simple. You are just few clicks away
             </p>
             <Button 
@@ -182,8 +183,8 @@ const SignIn = () => {
         </div>
         <div className="panel right-panel">
           <div className="content col-md-9">
-            <h5>One of us ?</h5>
-            <p className='fw-light'>
+            <h5 className='text-white'>One of us ?</h5>
+            <p className='text-white'>
               Login to unlock our amazing features. You can Login using your email or phone number.
             </p>
             <Button 

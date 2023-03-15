@@ -1,4 +1,7 @@
 /* .container */
+.login-container {
+  height: 100vh !important;
+}
 .wrapper {
   position: relative;
   width: 100%;
@@ -32,7 +35,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0rem 5rem;
+  padding: 0 1em;
+  /* padding: 0rem 5rem; */
   transition: all 0.2s 0.7s;
   overflow: hidden;
   grid-column: 1 / 2;
@@ -53,8 +57,7 @@ form.sign-in-form {
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
-  height: 55px;
-  border-radius: 55px;
+  border-radius: 30px;
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
@@ -63,7 +66,8 @@ form.sign-in-form {
 
 .input-field i {
   text-align: center;
-  line-height: 55px;
+  /* line-height: 40px; */
+  line-height: 2.9em;
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
@@ -132,7 +136,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background: #E3F5FE;
+  background: #0D60D8;
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -236,7 +240,7 @@ form.sign-in-form {
   }
   .signin-signup {
     width: 100%;
-    top: 95%;
+    top: 80%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }

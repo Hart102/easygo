@@ -33,9 +33,8 @@ function App() {
           <Route path='/user/dashboard' element={<Dashboard />}>
             <Route path='/user/dashboard/profile' element={<Profile />} />
           </Route>
-          <Route path='/user/login' element={<SignIn />}>
-            <Route path='/user/login/verify/mail' element={<VerifyMail />} />
-          </Route>
+          <Route path='/user/login' element={<SignIn />}/>
+          <Route path='/easygo/user/verification' element={<VerifyMail />} />
           <Route path='/payment' element={<Payment />} />
       </Routes>
     </BrowserRouter>

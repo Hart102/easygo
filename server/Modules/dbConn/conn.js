@@ -4,7 +4,7 @@ const conn = Mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "easy7"
+    database: "easy8"
 });
 
 let table = `CREATE TABLE users (
