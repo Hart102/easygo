@@ -9,7 +9,7 @@ const inputField = ({
       <p className="fw-light m-0">{label}</p>
       <input 
         type={type} 
-        className={`form-control border-0 ${classname}`}
+        className={`form-control border- ${classname}`}
         style={{background: background}}
       />
     </div>

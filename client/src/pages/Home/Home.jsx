@@ -2,6 +2,7 @@ import './Home.css'
 import { useRef } from 'react'
 import Navbar from "../../component/Navbar"
 import Jumbotrom from "../../component/HomePageComponents/Jumbotrom"
+import ChatIcons from '../../component/ChatIcons/ChatIcons'
 import Button from "../../component/Button"
 import Card from "../../component/HomePageComponents/Card/Card"
 import RowTemplate from '../../component/HomePageComponents/RowTemplate/RowTemplate'
@@ -9,6 +10,8 @@ import Footer from "../../component/Footer"
 import Contact from '../../component/HomePageComponents/Contact/Contact'
 import { useNavigate } from 'react-router-dom'
 import { write_up } from './Contents'
+import VtuImage from '../../asserts/images/internet.jpg'
+
 
 const Home = () => {
   const navigation = useNavigate()
@@ -26,6 +29,7 @@ const Home = () => {
         scrollToContact={() => contactRef.current?.scrollIntoView({behavior: 'smooth'})}
       />
       <Jumbotrom />
+      <ChatIcons />
       <section className="py-lg-5">
         <div className="container py-4 px-lg-0">
           <div className="row text-lg-start text-center">
@@ -40,13 +44,16 @@ const Home = () => {
             </div>
             <div className="col-md-8 px-lg-0 px-4 mx-md-auto">
               <div className="d-flex flex-wrap g-3">
-                {write_up.map(content => 
+                {write_up.map((content, index) => 
+                <div className="cards col-lg-5 p-4 my-3 mx-lg-2 rounded-top rounded-bottom shadow-sm fw-light" 
+                style={{background: '#F9F9F9'}} role="button" key={index}> 
                   <Card 
                     img={content.icon} 
                     title={content.title} 
                     text={content.text} 
                     linkText={content.linkText}
                   />
+                </div>
                 )}
               </div>
             </div>
@@ -54,7 +61,7 @@ const Home = () => {
         </div>
       </section>
       <RowTemplate 
-        img='./images/seller.png' 
+        img={VtuImage}
         title='VTU Business in Nigeria and Data Reselling' 
         text='Make money as an easygo data reseller, Start with little capital and focus on earning while we handle the messy jobs. Become a reseller with a little capital and earn money.'
         classname='lh-lg'
@@ -78,11 +85,6 @@ const Home = () => {
               <div 
                 className="d-flex justify-content-center 
                 align-items-center flex-lg-row flex-column my-lg-4 my-3">
-                <Button
-                  classes="btn d-flex align-items-center border p-lg-3 my-lg-0 my-3 mx-lg-3" 
-                  img="./images/apple-icon.svg"
-                  text="Get on iphone"
-                /> 
                 <Button
                   classes="btn d-flex align-items-center border p-lg-3 my-lg-0 my-3" 
                   img="./images/google-icon.svg"

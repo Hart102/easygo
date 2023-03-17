@@ -15,7 +15,6 @@ export const modelAction = (output) => {// Pop up model function
     closeModel(){
       if(!singleSelector('.model').classList.contains('d-none')){
         singleSelector('.model').classList.add('d-none')
-        return output('')
       }
     }
   }

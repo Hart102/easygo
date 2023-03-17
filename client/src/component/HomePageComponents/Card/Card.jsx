@@ -7,18 +7,12 @@ const Card = ({
   linkText
 }) => {
   return (
-    <div 
-      className="cards col-lg-5 p-4 my-3 mx-lg-2 rounded-top rounded-bottom shadow-sm fw-light" 
-      style={{background: '#F9F9F9'}} role="button">  
+    <>  
       <div className="col-2 mx-auto mx-lg-0">
-        <div 
-          className={`p-3 rounded-circle fa ${img}`} 
-          style={{background: '#E3F5FE'}}>
+        <div className={`p-3 rounded-circle fa ${img}`} style={{background: '#E3F5FE'}}>
         </div>
       </div>
-      <div className="fs-4 fw-bold my-3">
-          {title}
-      </div>
+      <div className="fs-4 fw-bold my-3">{title}</div>
       <p>{text}</p>
       <div 
           className="d-flex align-items-center 
@@ -30,7 +24,7 @@ const Card = ({
             text={linkText}
           />
       </div>
-    </div>
+    </>
   )
 }
 

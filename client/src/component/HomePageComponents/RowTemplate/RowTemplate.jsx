@@ -9,7 +9,7 @@ const RowTemplate = ({
 }) => {
   return (
     <section className="py-lg-5" id='contact'>
-    <div className="container my-4">
+    <div className="container my-4 py-5 py-lg-0">
       <div 
         className={`col-md-12 mx-auto d-lg-flex d-md-flex justify-content-center
         align-items-center text-center text-lg-start ${classname}`}>

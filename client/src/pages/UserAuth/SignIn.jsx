@@ -7,7 +7,8 @@ import SocialIcons from './SocialIcons'
 import { Data } from '../../component/DataManager/PostData'
 import axios from 'axios'
 import * as Helper from '../../component/HelperFunction/Helper'
-import Loader from '../../asserts/images/loader2.gif'
+import Loader from '../../component/Loader/Loader'
+// import Loader from '../../asserts/images/loader2.gif'
 
 
 const SignIn = () => {    
@@ -15,7 +16,7 @@ const SignIn = () => {
   // const userSession = useSelector((state) => state.users.value) 
   const navigation = useNavigate()
   const [signup, setSignup] = useState(false)
-  const [hideLoader, setHideLoader] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   //------Sign-up components------
   const[signUpMsg, setSignUpMsg] = useState('')
@@ -55,9 +56,7 @@ const SignIn = () => {
                 type="tel" 
                 placeholder="phone" 
                 onChange={(e) => {
-                  setServerMsg('')
-                  setPhone_number(e.target.value)
-                }}
+                  setServerMsg(''); setLoader(false); setPhone_number(e.target.value)}}
               />
             </div>
             <div className="input-field border bg-transparent">
@@ -66,29 +65,26 @@ const SignIn = () => {
                 type="password" 
                 placeholder="Password" 
                 onChange={(e) => {
-                  setServerMsg('')
-                  setPwd(e.target.value)
-                }}
+                  setServerMsg(''); setLoader(false);setPwd(e.target.value)}}
               />
             </div>
+            <span className={loader ? 'd-block' : 'd-none'}><Loader /></span>
             <Button 
-              classes={phone_number && user_password ? 'btn btn-dark px-lg-5 my-3 rounded-pill' : 'd-none'} 
-              text={'Login'}
-              func={(e) => {
-                e.preventDefault()
+              func={(e) => {//--------Login function----------
+                e.preventDefault(); setLoader(true);
                 if(Helper.verify_phone(phone_number) !== true){
-                  setServerMsg(Helper.verify_phone(phone_number))
+                  setServerMsg(Helper.verify_phone(phone_number)); setLoader(false);
                 }else{
-                  Data().SendData('http://localhost:5000/api/user_login', 
-                  {phone_number, user_password}).then(res => {
+                  Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => {
                     if(res.data !== true) return setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "))
-                    setPhone_number('')
-                    setPwd('')
-                    navigation('/user/dashboard')
+                    setPhone_number(''); setPwd(''); navigation('/user/dashboard'); setLoader(true);
                     Helper.multiSelector('input').forEach(ele => ele.value ='')
                   })
                 }
               }}
+              text={'Login'}
+              background={'#0D60D8'}
+              classes={phone_number && user_password ? 'btn text-white px-lg-5 my-3 rounded-pill col-6' : 'd-none'} 
             />
             <SocialIcons />
           </form>
@@ -103,8 +99,7 @@ const SignIn = () => {
                 type="tel" 
                 placeholder="Phone" 
                 onChange={(e) => {
-                  setSignUpMsg(''); 
-                  setPhone(e.target.value)
+                  setSignUpMsg(''); setLoader(false); setPhone(e.target.value)
                 }}
               />
             </div>
@@ -114,9 +109,7 @@ const SignIn = () => {
                 type="email" 
                 placeholder="Email" 
                 onChange={(e) => {
-                  setSignUpMsg(''); 
-                  setEmail(e.target.value)
-                }}
+                  setSignUpMsg(''); setLoader(false); setEmail(e.target.value)}}
               />
             </div>
             <div className="input-field bg-transparent border">
@@ -125,43 +118,26 @@ const SignIn = () => {
                 type="password" 
                 placeholder="Password" 
                 onChange={(e) => {
-                  setSignUpMsg(''); 
-                  setPassword(e.target.value)
-                }}
+                  setSignUpMsg(''); setLoader(false); setPassword(e.target.value)}}
               />
             </div>
-            
+            <span className={loader ? 'd-block' : 'd-none'}><Loader /></span>
             <Button 
-              classes={phone && email && password ? 'btn btn-dark py-2 px-lg-5 col-6 my- rounded-pill' : 'd-none'} 
+              func={(e) => {//------Sign up function-------------
+                e.preventDefault(); setLoader(true);
+                if(Helper.verify_phone(phone) !== true){
+                  setSignUpMsg(Helper.verify_phone(phone)); setLoader(false);
+                }else{
+                  axios.post('http://localhost:5000/api/sign_up', {phone, email, password}).then(res => {
+                    if(res.data !== true){setSignUpMsg(res.data); setLoader(false);
+                    }else{navigation('/easygo/user/verification', {state: email})}
+                  })
+                }  
+              }}
               text={'Sign up'} 
-              func={(e) => {
-              e.preventDefault()
-              if(Helper.verify_phone(phone) !== true){
-                setSignUpMsg(Helper.verify_phone(phone))
-              }else{
-                axios.post('http://localhost:5000/api/sign_up', {phone, email, password})
-                .then(res => {
-                  res.data === true ? navigation('/easygo/user/verification', {state: email}) : setSignUpMsg(res.data)})
-              }
-              
-
-
-
-              return
-              if(Helper.verify_phone(phone) !== true){
-                setSignUpMsg(Helper.verify_phone(phone))
-              }else{
-                Data().SendData('http://localhost:5000/api/sign_up', 
-                {phone, email, password}).then(res => {
-                  if(res.data !== true) return setSignUpMsg(res.data.replace(/\"/g, " "))
-                  setPhone('')
-                  setEmail('')
-                  setPassword('')
-                  navigation('/user/dashboard')
-                  Helper.multiSelector('input').forEach(ele => ele.value ='')
-                })
-              }
-            }}/>
+              background={'#0D60D8'}
+              classes={phone && email && password ? 'btn text-white py-2 px-lg-5 col-6 rounded-pill' : 'd-none'} 
+              />
             <SocialIcons />
           </form>
         </div>

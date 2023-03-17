@@ -4,25 +4,33 @@ import { useNavigate } from "react-router-dom"
 const Menu = () => {
   const navigation = useNavigate()
   return (
-    <div className="bg-white shadow-sm rounded-bottom px-4">
+    <div className="px-4">
       <div className="border-bottom"></div>
-      <div className="my-4 d-flex justify-content-between justify-content-lg-space-around">
-        <Action 
-          func={() => navigation('/payment')}
-          classname={'fa fa-plus'} 
-          background={"#66CD71"} 
-          text={"Fund Wallet"}
-        />
-        <Action 
-          classname={'fa fa-arrow-right'} 
-          background={"#EC4D6D"} 
-          text={"Send"}
-        />
+      {/* <div className="my-4 d-flex justify-content-between justify-content-lg-space-around"> */}
+      <div className="row my-4 g-5">
+        <div className="col-lg-4 col-ml-4 col-6 shadow rounded">
+          <Action 
+            func={() => navigation('/payment')}
+            classname={'fa fa-plus'} 
+            background={"#5FC797"} 
+            text={"Fund Wallet"}
+          />
+        </div>
+        <div className="col-lg-4 col-ml-4 col-6 shadow rounded">
+          <Action 
+            classname={'fa fa-arrow-right'} 
+            background={"#5FC797"} 
+            text={"Send"}
+          />
+        </div>
+        <div className="col-lg-4 col-ml-4 col-6 shadow rounded">
         <Action 
           classname={'fa fa-arrow-down'} 
-          background={"#F8B431"} 
+          background={"#5FC797"} 
           text={"Withdraw"}
         />
+        </div>
+
       </div>
     </div>
   )

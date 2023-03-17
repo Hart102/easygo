@@ -14,6 +14,7 @@ import SignIn from './pages/UserAuth/SignIn';
 import VerifyMail from './pages/UserAuth/VerifyMail';
 import Payment from './pages/Payment/Payment'
 import Profile from './pages/UserDashboard/UserProfile/Profile';
+import Buydata from './Redux/Buydata/Buydata';
 
 
 
@@ -21,7 +22,6 @@ import Profile from './pages/UserDashboard/UserProfile/Profile';
 
 function App() {
   const dispatch = useDispatch()
-  // const user = useSelector(state => state.users.value)
   useEffect(() => {
     axios.get('http://localhost:5000/api/user_session')
     .then(res => dispatch(addUser(res.data[0])))
@@ -36,6 +36,7 @@ function App() {
           <Route path='/user/login' element={<SignIn />}/>
           <Route path='/easygo/user/verification' element={<VerifyMail />} />
           <Route path='/payment' element={<Payment />} />
+          <Route path='/easygo/buy/data' element={<Buydata />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import Button from "../Button"
 import * as Helper from '../HelperFunction/Helper'
+import VtuImage from '../../asserts/images/internet.jpg'
 
 const Jumbotrom = () => {
     const navigation = useNavigate()
@@ -28,14 +29,14 @@ const Jumbotrom = () => {
                     />
                 </div>
             </div>
-            <div className="col-lg-5 col-xl-5 col-md-5 col-10 d-flex justify-content-center px-lg-0 px-5 my-lg-0 my-5">
-                <img src="./images/seller.png" className="img-fluid" />
+            <div className="col-lg-5 col-xl-5 col-md-5 col-10 d-flex justify-content-center px- my-lg-0 my-5">
+                <img src={VtuImage} className="img-fluid" />
             </div>
         </div>
     </section>
     {/*---------Security---------*/}
     <section className="py-lg-4">
-        <div className="container my-lg-0 px-4">
+        <div className="container my-lg-0 mb-5 px-4">
             <div 
                 className="col-md-9 mx-auto d-lg-flex 
                 justify-content-center text-lg-start text-center">

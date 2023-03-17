@@ -1,4 +1,5 @@
-import AnchorTag from './AnchorTag'
+import Logo from './Logo/Logo'
+import { Link } from 'react-router-dom'
 import Button from './Button'
 import { useEffect, useState } from 'react'
 import MenuIcon from '../pages/UserDashboard/DashboardComp/FooterMenu/MenuIcon'
@@ -27,20 +28,12 @@ const Navbar = ({
             className={scroll ? "shadow-sm bg-white fixed-top top-0" : 
             "bg-white fixed-top top-0"}>
             <div className="container py-1 d-flex align-items- align-items-baseline justify-content-between">
-                <h2 className="fw-bolder d-lg-block d-none">EasyGoData</h2>
-                <h4 className="fw-bold d-lg-none d-block">EasyGoData</h4>
+                <Logo size={'h2 fw-bolder d-lg-block d-none'}/>
+                <Logo size={'h4 fw-bold d-lg-none d-block'}/>
                 <div className="d-lg-flex d-none text-center d-none">
-                    <AnchorTag location='/' classes='nav-link fw-bold' text='Home'/>
-                    <AnchorTag func={scrollToAbout}
-                        classes='nav-link fw-bold' 
-                        text='About'
-                    />
-                    <AnchorTag 
-                        func={scrollToContact}
-                        location={'/'}
-                        classes='nav-link fw-bold' 
-                        text='Contact'
-                    />
+                    <Link to={'/'} className='text-dark nav-link fw-bold'>Home</Link>
+                    <Link to={'/'} className='text-dark nav-link fw-bold' onClick={scrollToAbout}>About</Link>
+                    <Link to={'/'} className='text-dark nav-link fw-bold' onClick={scrollToContact}>Contact</Link>
                 </div>
                 <div className="d-flex">
                     <Button 

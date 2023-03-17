@@ -1,7 +1,7 @@
 :root{
     --White: #fff;
     --Blue-color: #0D60D8;
-    --LightAsh: #555;
+    --LightAsh: #888;
 }
 input:focus{
     border: none !important;
@@ -20,6 +20,10 @@ button:hover{
     background: var(--Blue-color) !important;
     transform: translateY(-5px);
 }
+.btn:focus {
+    box-shadow: none;
+}
+  
 .cards{
     transition: 0.7s;
 }

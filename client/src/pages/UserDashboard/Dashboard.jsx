@@ -7,9 +7,9 @@ import Menu from './DashboardComp/Menu'
 import Services from './DashboardComp/Services'
 import MenuIcon from './DashboardComp/FooterMenu/MenuIcon'
 import Model from './Model/Model'
-import { Data } from '../../component/DataManager/PostData'
 import { addUser } from '../../Redux/Users'
-// import Profile from './UserProfile/Profile'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -17,14 +17,18 @@ const Dashboard = () => {
   const[msg, setMsg] = useState('')
   const[user, setUser] = useState('')
 
-  // useEffect(() => {
-  //   Helper.session_verifier().then(res => res[0] ? 
-  //     setUser(res[0]) : navigation('/user/login'))
-  // },[])
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/user_session')
+    .then(res => {
+      if(res.data) return setUser(res.data[0])
+      navigation('/user/login')
+    })
+  },[])
+
 
   return ( //EDEDF5
     <>
-    <Header userName={user.username} 
+    <Header userName={user ? user.username : 'Loading...'} 
       action={() => Helper.modelAction(setMsg).openModel("Are you sure want to logout ?")}
     />
     <section 
@@ -33,13 +37,44 @@ const Dashboard = () => {
         width: '800px', 
         maxWidth: "100%", 
         background: '#',
-        marginBottom: '100px'
-      }}>
+        marginBottom: '100px'}}>
         <Menu />
         <main>
           <p className='mx-4 mx-lg-0'>Services</p>
           <div className="d-flex justify-content-around justify-content-lg-between">
-            <Services />
+            {/* <Services /> */}
+            <button onClick={() => {
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch("https://isquaredata.com/api/education/services/", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            }} >Data</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <Services />
           </div>
         </main>
@@ -57,29 +92,12 @@ const Dashboard = () => {
         style={{
           width: '800px', 
           maxWidth: "100%", 
-          background: '#EDEDF5'
-        }}>
+          background: '#EDEDF5'}}>
           <div className="container d-flex1 d-none justify-content-between px-lg-5">
-            <MenuIcon 
-              location={'/'} 
-              iconName={'fa fa-home'} 
-              text={'Home'}
-            />
-            <MenuIcon 
-              location={'/'} 
-              iconName={'fa fa-circle'}
-              text={'Services'}
-            />
-            <MenuIcon 
-              location={'/'} 
-              iconName={'fa fa-arrow-right'}
-              text={'Send'}
-            />
-            <MenuIcon 
-              location={'/user/dashboard/profile'} 
-              iconName={'fa fa-user'} 
-              text={'Prifile'}
-            />
+            <MenuIcon location={'/'} iconName={'fa fa-home'} text={'Home'}/>
+            <MenuIcon location={'/'} iconName={'fa fa-circle'} text={'Services'}/>
+            <MenuIcon location={'/'} iconName={'fa fa-arrow-right'} text={'Send'}/>
+            <MenuIcon location={'/user/dashboard/profile'} iconName={'fa fa-user'} text={'Prifile'}/>
           </div>
         </footer>
     </section>

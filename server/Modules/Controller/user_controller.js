@@ -56,8 +56,7 @@ const cornfirm_email = (req, res) => {// Confrim mail
             if(err) {
                 res.json('Something went wrong')
             }else{
-                if(otp == result[0].otp){
-                    res.json(true)
+                if(req.body.otp == result[0].otp){
                     res.json(true)
                     delete result[0].password; req.session.user = result;
                     return currentUser = req.session.user;
