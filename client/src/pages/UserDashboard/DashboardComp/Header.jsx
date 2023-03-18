@@ -14,11 +14,7 @@ const DashboardHeader = ({
     <>
       <header 
         className="px-lg- mt-lg-5 mx-auto rounded" 
-        style={{
-          width: '800px', 
-          maxWidth: "100%", 
-          background: '#5FC797'
-        }}>
+        style={{width: '800px', maxWidth: "100%", background: '#5FC797'}}>
         <nav className="d-flex align-items-center justify-content-between p-lg-4 px-4 py-0">
           <div>
             <Logo size={'text-white'}/>
@@ -35,10 +31,7 @@ const DashboardHeader = ({
                 <Link to='/' className='nav-link text-white' onClick={() => setMenuAction(false)}>Home</Link>
                 <Link to='/user/dashboard/profile' className='nav-link text-white' onClick={() => setMenuAction(false)}>Profile</Link>
                 <Link to='/user/dashboard' className='nav-link text-white' onClick={() => setMenuAction(false)}>Dashboard</Link>
-                <Button 
-                  classes={'btn bg-white py-1 shadow-sm fw-bold rounded-pill'} 
-                  text={'LOGOUT'} func={action}
-                />
+                <Button classes={'btn bg-white py-1 shadow-sm fw-bold rounded-pill'} text={'LOGOUT'} func={action}/>
             </div>
           </div>
         </nav>

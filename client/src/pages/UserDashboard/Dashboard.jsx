@@ -43,17 +43,19 @@ const Dashboard = () => {
           <p className='mx-4 mx-lg-0'>Services</p>
           <div className="d-flex justify-content-around justify-content-lg-between">
             {/* <Services /> */}
-            <button onClick={() => {
-              var requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-              };
+            <Link to='https://isquaredata.com/api/education/services'>Data</Link>
+            {/* <button onClick={() => {
+             
+              // var requestOptions = {
+              //   method: 'GET',
+              //   redirect: 'follow'
+              // };
               
-              fetch("https://isquaredata.com/api/education/services/", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-            }} >Data</button>
+              // fetch("https://isquaredata.com/api/education/services/", requestOptions)
+              //   .then(response => response.text())
+              //   .then(result => console.log(result))
+              //   .catch(error => console.log('error', error));
+            }} >Data</button> */}
 
 
 

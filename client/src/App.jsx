@@ -1,3 +1,5 @@
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import 
 import { 
   BrowserRouter, 
   Route, 
@@ -15,6 +17,8 @@ import VerifyMail from './pages/UserAuth/VerifyMail';
 import Payment from './pages/Payment/Payment'
 import Profile from './pages/UserDashboard/UserProfile/Profile';
 import Buydata from './Redux/Buydata/Buydata';
+
+import Newdashboard from './pages/Newdasboard/Newdashboard';
 
 
 
@@ -37,6 +41,8 @@ function App() {
           <Route path='/easygo/user/verification' element={<VerifyMail />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/easygo/buy/data' element={<Buydata />} />
+          <Route path='/easygo/new' element={<Newdashboard />} />
+
       </Routes>
     </BrowserRouter>
   );

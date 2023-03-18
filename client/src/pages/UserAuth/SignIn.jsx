@@ -75,10 +75,14 @@ const SignIn = () => {
                 if(Helper.verify_phone(phone_number) !== true){
                   setServerMsg(Helper.verify_phone(phone_number)); setLoader(false);
                 }else{
-                  Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => {
-                    if(res.data !== true) return setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "))
-                    setPhone_number(''); setPwd(''); navigation('/user/dashboard'); setLoader(true);
-                    Helper.multiSelector('input').forEach(ele => ele.value ='')
+                  Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => 
+                  {
+                    if(res.data !== true){
+                      setLoader(false); setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "));
+                    }else{
+                      setPhone_number(''); setPwd(''); navigation('/user/dashboard');
+                      Helper.multiSelector('input').forEach(ele => ele.value ='')
+                    }
                   })
                 }
               }}
