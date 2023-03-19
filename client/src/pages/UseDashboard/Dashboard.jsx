@@ -6,7 +6,7 @@ import Header from './DashboardComp/Header'
 import Menu from './DashboardComp/Menu'
 import Services from './DashboardComp/Services'
 import MenuIcon from './DashboardComp/FooterMenu/MenuIcon'
-import Model from './Model/Model'
+import Model from '../../component/Model/Model'
 import { addUser } from '../../Redux/Users'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -18,11 +18,11 @@ const Dashboard = () => {
   const[user, setUser] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/user_session')
-    .then(res => {
-      if(res.data) return setUser(res.data[0])
-      navigation('/user/login')
-    })
+    // axios.get('http://localhost:5000/api/user_session')
+    // .then(res => {
+    //   if(res.data) return setUser(res.data[0])
+    //   navigation('/user/login')
+    // })
   },[])
 
 

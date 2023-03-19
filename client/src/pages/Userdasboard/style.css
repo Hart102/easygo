@@ -1,3 +1,7 @@
+a{
+    font-size: 0.9em;
+}
+
 .bd-placeholder-img {
 font-size: 1.125rem;
 text-anchor: middle;
@@ -47,4 +51,24 @@ overflow-x: auto;
 text-align: center;
 white-space: nowrap;
 -webkit-overflow-scrolling: touch;
+}
+
+
+/* Over view boxes */
+.boxes, .actions{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    gap: 10px;
+}
+
+.actions{
+    grid-template-columns: 
+    repeat(auto-fit, minmax(300px, auto));
+}
+
+@media (max-width: 920px) {
+    .actions{
+        grid-template-columns: 
+        repeat(auto-fit, minmax(150px, auto));
+    }
 }

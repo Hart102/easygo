@@ -1,5 +1,5 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import 
+import 'bootstrap/dist/js/bootstrap.bundle'
 import { 
   BrowserRouter, 
   Route, 
@@ -11,14 +11,14 @@ import { useDispatch } from 'react-redux';
 import { addUser } from './Redux/Users';
 
 import Home from './pages/Home/Home'
-import Dashboard from './pages/UserDashboard/Dashboard';
+import Dashboard from './pages/UseDashboard/Dashboard';
 import SignIn from './pages/UserAuth/SignIn';
 import VerifyMail from './pages/UserAuth/VerifyMail';
 import Payment from './pages/Payment/Payment'
-import Profile from './pages/UserDashboard/UserProfile/Profile';
+import Profile from './pages/UseDashboard/UserProfile/Profile';
 import Buydata from './Redux/Buydata/Buydata';
 
-import Newdashboard from './pages/Newdasboard/Newdashboard';
+import Userdashboard from './pages/Userdasboard/Userdashboard';
 
 
 
@@ -41,7 +41,7 @@ function App() {
           <Route path='/easygo/user/verification' element={<VerifyMail />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/easygo/buy/data' element={<Buydata />} />
-          <Route path='/easygo/new' element={<Newdashboard />} />
+          <Route path='/easygo/user/dashboard' element={<Userdashboard />} />
 
       </Routes>
     </BrowserRouter>

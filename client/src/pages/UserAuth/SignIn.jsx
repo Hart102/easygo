@@ -80,7 +80,7 @@ const SignIn = () => {
                     if(res.data !== true){
                       setLoader(false); setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "));
                     }else{
-                      setPhone_number(''); setPwd(''); navigation('/user/dashboard');
+                      setPhone_number(''); setPwd(''); navigation('/easygo/user/dashboard');
                       Helper.multiSelector('input').forEach(ele => ele.value ='')
                     }
                   })

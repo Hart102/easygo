@@ -1,5 +1,5 @@
 import Logo from "../../component/Logo/Logo"
-import Header from '../../pages/UserDashboard/DashboardComp/Header'
+import Header from '../../pages/UseDashboard/DashboardComp/Header'
 import InputField from "../../component/HomePageComponents/Contact/InputField"
 const Buydata = () => {
   return (

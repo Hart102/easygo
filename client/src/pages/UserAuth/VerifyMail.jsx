@@ -3,7 +3,7 @@ import Button from "../../component/Button"
 import { addUser } from "../../Redux/Users"
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import ServerMessageModel from "../UserDashboard/Model/ServerMessageModel"
+import ServerMessageModel from "../../component/Model/ServerMessageModel"
 import * as Helper from '../../component/HelperFunction/Helper'
 
 const VerifyMail = () => {
@@ -40,7 +40,7 @@ const VerifyMail = () => {
                         'http://localhost:5000/api/confirm_mail', 
                         {otp: otp, email: location.state}).then(res => {
                         res.data !== true ? Helper.modelAction(setMsg).openModel(res.data) : 
-                        navigate('/user/Dashboard')}
+                        navigate('/easygo/user/dashboard')}
                     )
                 }}
             />

@@ -2,7 +2,7 @@ import Logo from './Logo/Logo'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import { useEffect, useState } from 'react'
-import MenuIcon from '../pages/UserDashboard/DashboardComp/FooterMenu/MenuIcon'
+import MenuIcon from '../pages/UseDashboard/DashboardComp/FooterMenu/MenuIcon'
 import * as Helper from './HelperFunction/Helper'
 
 const Navbar = ({
