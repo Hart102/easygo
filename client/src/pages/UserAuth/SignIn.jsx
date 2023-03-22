@@ -31,7 +31,7 @@ const SignIn = () => {
 
   useEffect(() => {
     Helper.session_verifier().then(res => {
-      res[0] ? navigation('/user/dashboard') : navigation('/user/login')
+      res[0] ? navigation('/easygo/user/dashboard') : navigation('/user/login')
     })
   },[])
 

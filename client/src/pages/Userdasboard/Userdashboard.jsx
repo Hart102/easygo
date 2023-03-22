@@ -10,6 +10,7 @@ import Model from '../../component/Model/Model';
 import { useDispatch } from 'react-redux';
 import * as Helper from '../../component/HelperFunction/Helper'
 import { addUser } from '../../Redux/Users';
+// axios.defaults.withCredentials = true
 
 const Newdashboard = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,9 @@ const Newdashboard = () => {
   const[user, setUser] = useState('')
   const[msg, setMsg] = useState('')
 
-  
+  const getData = () => {
+    axios.get('https://isquaredata.com/api/education/services/', { withCredentials: true }).then(res => console.log(res))
+  }
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/user_session')
@@ -44,8 +47,9 @@ const Newdashboard = () => {
               text='More Info' classname='text-white' style='#DC4246' bg='#C83B3E'/>
             </section>
             <section className='actions'>
+              {/* <button onClick={() => getData()}>dta</button> */}
               <ActionBox IconName='fa fa-wifi fa-3x text-light' linkText='Buy Data' linkTo=''/>
-              <ActionBox IconName='fa fa-phone fa-3x text-light' linkText='Buy Airtime' linkTo=''/>
+              <ActionBox IconName='fa fa-phone fa-3x text-light' linkText='Buy Airtime' linkTo='https://isquaredata.com/api/education/services/'/>
               <ActionBox IconName='fa fa-tv fa-3x text-light' linkText='Tv Subscription' linkTo=''/>
               <ActionBox IconName='fa fa-lightbulb fa-3x text-light' linkText='Electricity' linkTo=''/>
             </section>
