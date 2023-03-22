@@ -72,7 +72,7 @@ const AdminDashboard = () => {
                             </td>
                         </tr>
                         <tr className='col-md-12'>
-                            <td className='col-md-4 p-3 text-light fw-lighter'>Hart C Justman</td>
+                            <td className='col-md-4 p-3 text-light fw-lighter'>Hart</td>
                             <td className='col-md-4 p-3 text-light fw-lighter'>hartjust553@gmail.com</td>
                             <td className='col-md-4 p-3 text-light fw-lighter'>0901122334</td>
                             <td  className='col-md-4 p-3 d-flex'>
