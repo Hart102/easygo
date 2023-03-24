@@ -19,7 +19,10 @@ const Newdashboard = () => {
   const[msg, setMsg] = useState('')
 
   const getData = () => {
-    axios.get('https://isquaredata.com/api/education/services/', { withCredentials: true }).then(res => console.log(res))
+    axios.get(
+      'https://isquaredata.com/api/education/services/', 
+      { withCredentials: true }).then(res => console.log(res)
+    )
   }
 
   useEffect(() => {

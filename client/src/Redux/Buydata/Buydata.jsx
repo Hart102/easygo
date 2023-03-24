@@ -1,10 +1,10 @@
 import Logo from "../../component/Logo/Logo"
-import Header from '../../pages/UseDashboard/DashboardComp/Header'
+// import Header from '../../pages/UseDashboard/DashboardComp/Header'
 import InputField from "../../component/HomePageComponents/Contact/InputField"
 const Buydata = () => {
   return (
     <>
-    <Header />
+    {/* <Header /> */}
     <div className="d-flex1 flex-column align-items-center justify-content-center px--5" style={{
         width: '800px', 
         maxWidth: "100%",
