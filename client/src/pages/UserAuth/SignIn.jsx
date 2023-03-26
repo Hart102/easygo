@@ -29,6 +29,41 @@ const SignIn = () => {
   const[phone_number, setPhone_number] = useState('')
   const[user_password, setPwd] = useState('')
 
+
+  const userAuthentication = () => {//User authentication function
+    return{
+      signUpFunction(){// Sign up function
+        setLoader(true);
+        if(Helper.verify_phone(phone) !== true){
+          setSignUpMsg(Helper.verify_phone(phone)); setLoader(false);
+        }else{
+          axios.post('http://localhost:5000/api/sign_up', {phone, email, password}).then(res => {
+            if(res.data !== true){setSignUpMsg(res.data); setLoader(false);
+            }else{navigation('/easygo/user/verification', {state: email})}
+          })
+        }  
+      },
+      loginFunction(){// Login function
+        setLoader(true);
+        if(Helper.verify_phone(phone_number) !== true){
+          setServerMsg(Helper.verify_phone(phone_number)); setLoader(false);
+        }else{
+          Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => 
+          {
+            if(res.data !== true){
+              setLoader(false); setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "));
+            }else{
+              setPhone_number(''); setPwd(''); navigation('/easygo/user/dashboard');
+              Helper.multiSelector('input').forEach(ele => ele.value ='')
+            }
+          })
+        }
+      }
+    }
+  }
+
+
+
   useEffect(() => {
     Helper.session_verifier().then(res => {
       res[0] ? navigation('/easygo/user/dashboard') : navigation('/user/login')
@@ -40,7 +75,7 @@ const SignIn = () => {
     <Navbar 
       signInAction={() => setSignup(false)} 
       signUpAction={() => setSignup(true)}
-      />
+    />
     <div className={
       signup ? 
       "wrapper login-container sign-up-mode" : 
@@ -70,22 +105,7 @@ const SignIn = () => {
             </div>
             <span className={loader ? 'd-block' : 'd-none'}><Loader /></span>
             <Button 
-              func={(e) => {//--------Login function----------
-                e.preventDefault(); setLoader(true);
-                if(Helper.verify_phone(phone_number) !== true){
-                  setServerMsg(Helper.verify_phone(phone_number)); setLoader(false);
-                }else{
-                  Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => 
-                  {
-                    if(res.data !== true){
-                      setLoader(false); setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "));
-                    }else{
-                      setPhone_number(''); setPwd(''); navigation('/easygo/user/dashboard');
-                      Helper.multiSelector('input').forEach(ele => ele.value ='')
-                    }
-                  })
-                }
-              }}
+              func={(e) => {e.preventDefault(); userAuthentication().loginFunction()}}
               text={'Login'}
               background={'#0D60D8'}
               classes={phone_number && user_password ? 'btn text-white px-lg-5 my-3 rounded-pill col-6' : 'd-none'} 
@@ -127,17 +147,7 @@ const SignIn = () => {
             </div>
             <span className={loader ? 'd-block' : 'd-none'}><Loader /></span>
             <Button 
-              func={(e) => {//------Sign up function-------------
-                e.preventDefault(); setLoader(true);
-                if(Helper.verify_phone(phone) !== true){
-                  setSignUpMsg(Helper.verify_phone(phone)); setLoader(false);
-                }else{
-                  axios.post('http://localhost:5000/api/sign_up', {phone, email, password}).then(res => {
-                    if(res.data !== true){setSignUpMsg(res.data); setLoader(false);
-                    }else{navigation('/easygo/user/verification', {state: email})}
-                  })
-                }  
-              }}
+              func={(e) => {e.preventDefault(); userAuthentication().signUpFunction()}}
               text={'Sign up'} 
               background={'#0D60D8'}
               classes={phone && email && password ? 'btn text-white py-2 px-lg-5 col-6 rounded-pill' : 'd-none'} 

@@ -2,7 +2,7 @@ import Logo from './Logo/Logo'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import { useEffect, useState } from 'react'
-import MenuIcon from '../pages/UseDashboard/DashboardComp/FooterMenu/MenuIcon'
+// import MenuIcon from '../pages/UseDashboard/DashboardComp/FooterMenu/MenuIcon'
 import * as Helper from './HelperFunction/Helper'
 
 const Navbar = ({
@@ -47,11 +47,11 @@ const Navbar = ({
         </nav>
         {/*------- Mobile Navbar -------*/}
         <nav className='bg-white shadow-sm fixed-bottom bottom-0 px-5 w-100 border-top'>
-            <div className="d-lg-none d-flex justify-content-between text-center">
+            {/* <div className="d-lg-none d-flex justify-content-between text-center">
                 <MenuIcon location={'/'} iconName={'fa fa-home'} text={'Home'}/>
                 <MenuIcon location={'/'} iconName={'fa fa-info'} text={'Help'}/>
                 <MenuIcon location={'/'} iconName={'fa fa-envelope'} text={'Contact'}/>
-            </div>
+            </div> */}
         </nav>
     </div>
   )
