@@ -14,7 +14,10 @@ import { addUser } from '../../Redux/Users';
 // import design from '../../asserts/images/design.webp'
 // import color from '../../asserts/images/color4.jpg'
 import Button from '../../component/Button';
-
+import { Outlet } from 'react-router-dom';
+import usersList from './UsersList';
+import TableHead from './TableHead';
+import TableRow from './TableRow';
 
 
 const AdminDashboard = () => {
@@ -24,9 +27,9 @@ const AdminDashboard = () => {
     const[msg, setMsg] = useState('')
 
   return (
-    <section style={{background: '#212D3B'}}>
+    <section style={{background: '#212D3B', minHeight: '100vh'}}>
       <Navbar func={() => Helper.modelAction(setMsg).openModel("Are you sure want to logout ?")}/>
-      <div className="container-fluid pb-5">
+      <div className="container-fluid">
         <div className="row">
           <Sidebar />
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -42,47 +45,8 @@ const AdminDashboard = () => {
             </section>
 
             <section className='p-3'>
-                <b className='text-light my-5'>Manage Site</b>
-                <table className='rounded' style={{background: '1linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))'}}>
-                    <thead>
-                        <tr className='col-md-12 bg-dark'>
-                            <th className='col-md-4 p-3 text-light'>Name</th>
-                            <th className='col-md-4 p-3 text-light'>Email</th>
-                            <th className='col-md-4 p-3 text-light'>phone</th>
-                            <th className='col-md-4 p-3 text-light'>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody className='shadow-sm'>
-                        <tr className='col-md-12'>
-                            <td className='col-md-4 p-3 text-light fw-light'>Hart C Justman</td>
-                            <td className='col-md-4 p-3 text-light fw-light'>hartjust553@gmail.com</td>
-                            <td className='col-md-4 p-3 text-light fw-light'>0901122334</td>
-                            <td  className='col-md-4 p-3 d-flex'>
-                                <Button classes='btn rounded text-light mx-1' text='view' background='#C83B3E'/>
-                                <Button classes='btn rounded text-light' text='Block' background='#4A973F'/>
-                            </td>
-                        </tr>
-                        <tr className='col-md-12'>
-                            <td className='col-md-4 p-3 text-light fw-light'>Hart C Justman</td>
-                            <td className='col-md-4 p-3 text-light fw-light'>hartjust553@gmail.com</td>
-                            <td className='col-md-4 p-3 text-light fw-light'>0901122334</td>
-                            <td  className='col-md-4 p-3 d-flex'>
-                                <Button classes='btn rounded text-light mx-1' text='view' background='#C83B3E'/>
-                                <Button classes='btn rounded text-light' text='Block' background='#4A973F'/>
-                            </td>
-                        </tr>
-                        <tr className='col-md-12'>
-                            <td className='col-md-4 p-3 text-light fw-lighter'>Hart</td>
-                            <td className='col-md-4 p-3 text-light fw-lighter'>hartjust553@gmail.com</td>
-                            <td className='col-md-4 p-3 text-light fw-lighter'>0901122334</td>
-                            <td  className='col-md-4 p-3 d-flex'>
-                                <Button classes='btn rounded text-light mx-1' text='view' background='#C83B3E'/>
-                                <Button classes='btn rounded text-light' text='Block' background='#4A973F'/>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+              <b className='text-light'>Manage Site</b>
+              <usersList />
             </section>
           </main>
         </div>
@@ -92,8 +56,8 @@ const AdminDashboard = () => {
         positiveAction={() => dispatch(addUser('logout'))} //Logout function
         negativeAction={(e) => Helper.modelAction(setMsg).closeModel()} //Cancel logout
       />
-        {/* <img src={color} className='mx-auto' /> */}
-
+      {/* <img src={color} className='mx-auto' /> */}
+      <Outlet />
     </section>
   )
 }

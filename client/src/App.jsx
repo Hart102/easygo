@@ -18,6 +18,7 @@ import Buydata from './Redux/Buydata/Buydata';
 
 import Userdashboard from './pages/Userdasboard/Userdashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import Transactions from './pages/Admin/Transactions'
 
 
 
@@ -40,7 +41,9 @@ function App() {
         <Route path='/payment' element={<Payment />} />
         <Route path='/easygo/buy/data' element={<Buydata />} />
         <Route path='/easygo/user/dashboard' element={<Userdashboard />} />
-        <Route path='/easygo/admin/dashboard' element={<AdminDashboard />} />
+        <Route path='/easygo/admin/dashboard' element={<AdminDashboard />}>
+          <Route path='/easygo/admin/dashboard/transactions' element={<Transactions />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

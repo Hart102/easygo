@@ -13,7 +13,6 @@ import Loader from '../../component/Loader/Loader'
 
 const SignIn = () => {    
   axios.defaults.withCredentials = true
-  // const userSession = useSelector((state) => state.users.value) 
   const navigation = useNavigate()
   const [signup, setSignup] = useState(false)
   const [loader, setLoader] = useState(false)
@@ -37,7 +36,8 @@ const SignIn = () => {
         if(Helper.verify_phone(phone) !== true){
           setSignUpMsg(Helper.verify_phone(phone)); setLoader(false);
         }else{
-          axios.post('http://localhost:5000/api/sign_up', {phone, email, password}).then(res => {
+          axios.post('http://localhost:5000/api/sign_up', {phone, email, password})
+          .then(res => {
             if(res.data !== true){setSignUpMsg(res.data); setLoader(false);
             }else{navigation('/easygo/user/verification', {state: email})}
           })
@@ -48,7 +48,8 @@ const SignIn = () => {
         if(Helper.verify_phone(phone_number) !== true){
           setServerMsg(Helper.verify_phone(phone_number)); setLoader(false);
         }else{
-          Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password}).then(res => 
+          Data().SendData('http://localhost:5000/api/user_login', {phone_number, user_password})
+          .then(res => 
           {
             if(res.data !== true){
               setLoader(false); setServerMsg(Helper.filter_response(res.data).replace(/\_/g, " "));
@@ -61,8 +62,6 @@ const SignIn = () => {
       }
     }
   }
-
-
 
   useEffect(() => {
     Helper.session_verifier().then(res => {

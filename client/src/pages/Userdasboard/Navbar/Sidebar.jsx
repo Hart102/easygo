@@ -7,7 +7,7 @@ const NavItem = () => {
       <div className="position-sticky pt-3 sidebar-sticky">
         <div className="nav flex-column">
           <Link className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.House/>Dashboard</Link>
-          <Link to='' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.File/>Tranction History</Link>
+          <Link to='/easygo/admin/dashboard/transactions' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.File/>Tranction History</Link>
           <Link to='/payment' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.Cart/>Fund wallet</Link>
           <Link className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.Person/>Buy Data</Link>
           <Link className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.BarChart/>Buy Airtime</Link>
