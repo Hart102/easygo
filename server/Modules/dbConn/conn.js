@@ -4,48 +4,76 @@ const conn = Mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "easy16"
+    database: "easy18"
 });
-
-let table = `CREATE TABLE users (
-    id int(11) NOT NULL,
-    username varchar(255) NOT NULL,
-    phone varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    otp varchar(255) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci`;
 conn.connect((err) => {
     if(err) return console.log(err)
     console.log('Connected to database')
-    // conn.query("CREATE DATABASE easy4", (err, result) => {
-    //     err ? console.log(err) : console.log("Database Created")        
-    //     conn.query(table, (err, result) => {
-    //         err ? console.log('An error occured while creating table') : console.log('User table created')
-    //     })
-    // })
-
 })
-module.exports = conn
+
+const userTable = `CREATE TABLE IF NOT EXISTS easy18.users (id INT(11) NOT NULL AUTO_INCREMENT , username VARCHAR(255) NOT NULL , phone VARCHAR(255) NOT NULL , email VARCHAR(255) NOT NULL , password VARCHAR(255) NOT NULL , otp VARCHAR(255) NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;`;
+
+const transactionTable = `CREATE TABLE IF NOT EXISTS easy18.transactions (id INT(11) NOT NULL AUTO_INCREMENT , userId VARCHAR(255) NOT NULL , transaction_status VARCHAR(255) NOT NULL , date VARCHAR(255) NOT NULL , transaction_type VARCHAR(255) NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;`
+
+const prepareDataBase = () => {
+    return{
+        serverMessage(
+            error, result, 
+            errorMessage, 
+            successMessage
+        ){
+            if(error) return console.log(errorMessage)
+            return console.log(successMessage)
+        },
+        createUserTable(){//Create user table
+            conn.query(userTable, (error, result) => {
+                prepareDataBase()
+                .serverMessage(
+                    error, 
+                    result,
+                    'Error occured while creating user table',
+                    'New user table created'
+                )
+            })
+        }, 
+        createTransactionTable(){ //Create transction table
+            conn.query(transactionTable, (err, result) => {
+                prepareDataBase()
+                .serverMessage(
+                    err, 
+                    result,
+                    'Error occured while creating transaction table',
+                    'New transaction table created'
+                )
+            })
+        },
+        CreateDataBase(){ //create database
+            const create = `CREATE DATABASE IF NOT EXISTS easy18`
+            conn.query(create, (err, response) => {
+                if(err) return console.log('Database creation error:', err)
+                prepareDataBase().createUserTable()
+                prepareDataBase().createTransactionTable()
+            })
+        }
+    }
+}
+
+module.exports = {
+    conn,
+    prepareDataBase,
+}
 
 
 
 
 
 
-// var mysql = require('mysql');
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "yourusername",
-//   password: "yourpassword"
-// });
 
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-//   con.query("CREATE DATABASE mydb", function (err, result) {
-//     if (err) throw err;
-//     console.log("Database created");
-//   });
-// });
+
+
+
+
+
+// inserting to transactionTable
+// INSERT INTO `transactions` (`id`, `userId`, `transaction_status`, `date`, `transaction_type`) VALUES (NULL, '1234', 'success', '03/5/2023', 'purchase');

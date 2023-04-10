@@ -1,7 +1,7 @@
 import TableHead from "./TableHead"
 import TableRow from './TableRow'
 
-const usersList = () => {
+const UsersList = () => {
   return (
     <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <table className='rounded'
@@ -24,4 +24,4 @@ const usersList = () => {
   )
 }
 
-export default usersList
+export default UsersList

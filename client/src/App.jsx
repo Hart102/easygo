@@ -18,18 +18,20 @@ import Buydata from './Redux/Buydata/Buydata';
 
 import Userdashboard from './pages/Userdasboard/Userdashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import UsersList from './pages/Admin/UsersList';
 import Transactions from './pages/Admin/Transactions'
-
-
-
+import { getAllTransaction } from './Redux/Transactions';
 
 
 function App() {
-
   const dispatch = useDispatch()
   useEffect(() => {
-    axios.get('http://localhost:5000/api/user_session')
+    getAllTransaction()
+    axios.get('http://localhost:5000/api/user_session') //session
     .then(res => dispatch(addUser(res.data[0])))
+
+    axios.get('http://localhost:5000/api/getAllTransaction')
+    .then(response => dispatch(getAllTransaction(response.data)))// Transactions
   }, [])
 
   return (
@@ -42,6 +44,7 @@ function App() {
         <Route path='/easygo/buy/data' element={<Buydata />} />
         <Route path='/easygo/user/dashboard' element={<Userdashboard />} />
         <Route path='/easygo/admin/dashboard' element={<AdminDashboard />}>
+          <Route path='/easygo/admin/dashboard' element={<UsersList />} />
           <Route path='/easygo/admin/dashboard/transactions' element={<Transactions />} />
         </Route>
       </Routes>

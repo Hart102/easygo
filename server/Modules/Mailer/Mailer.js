@@ -1,22 +1,18 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer')
 
-const senderAuthentication = () => {
+const mailTransporter = () => {
     let transport = nodemailer.createTransport({
-        service: 'gmail',
+        service: "gmail",
+        port: 2525,
         auth: {
-            user: 'goodluckhart340',
-            pass: 'mhebhgdrisoonlvl'
-        },
-        tls: {
-            // do not fail on invalid certs
-            rejectUnauthorized: false,
-        },
+            user: "goodluckhart340",
+            pass: "mhebhgdrisoonlvl"
+        }
     });
-
-    return mailTransporter
+    return transport
 }
 
 module.exports = { 
-    senderAuthentication
+    mailTransporter
 }

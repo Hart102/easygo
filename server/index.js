@@ -3,8 +3,10 @@ const bodyParser = require('body-parser')
 const Controllers = require('./Modules/Controller/user_controller')
 const session = require('express-session')
 const origin = require('./AccessOrigin/access')
-const app = express()
+const signUp = require('./Modules/Controller/SignUp')
+const { getTransactions } = require('./Modules/Controller/transactions')
 
+const app = express()
 app.use(origin)
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -25,11 +27,18 @@ app.use(session({
 
 
 // Routes 
-app.post('/api/sign_up',  Controllers.sign_up) // user authentication routes
-app.post('/api/confirm_mail',  Controllers.cornfirm_email) // user authentication routes
-app.post('/api/user_login',  Controllers.user_login)
-app.post('/api/edit_email', Controllers.edit_email)
-app.get('/api/user_session', Controllers.user_session)
-app.post('/api/user_logout', Controllers.user_logout)
+app.post('/api/sign_up',  signUp.sign_up) // user authentication routes
+app.post('/api/confirm_mail',  Controllers.userAuthentication().cornfirm_email)
+app.post('/api/user_login',  Controllers.userAuthentication().user_login)
+app.get('/api/user_session', Controllers.userAuthentication().user_session)
+app.post('/api/user_logout', Controllers.userAuthentication().user_logout)
+
+
+// Transaction routes 
+app.get('/api/getAllTransaction', getTransactions().getAllTransactions)
+app.post('/api/getSingleTransaction', getTransactions().getSingleTransaction)
+app.post('/api/deleteTransaction', getTransactions().deleteTransaction)
+
+
 
 app.listen(5000, () => console.log(`App running on port 5000`))

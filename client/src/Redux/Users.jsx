@@ -13,7 +13,6 @@ export const userSlice = createSlice({
             }
             state.value = action.payload
         },
-        
         editEmail: (state, action) => { //Edit email function
             state.value = {
                 ...state, 

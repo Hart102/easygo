@@ -5,11 +5,12 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import userReducer from '../src/Redux/Users'
-
+import Transactions from './Redux/Transactions';
 
 const store = configureStore({
   reducer: {
     users: userReducer,
+    transaction: Transactions,
   }
 })
 const root = ReactDOM.createRoot(

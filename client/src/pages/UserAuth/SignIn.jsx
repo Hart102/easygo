@@ -150,7 +150,7 @@ const SignIn = () => {
               text={'Sign up'} 
               background={'#0D60D8'}
               classes={phone && email && password ? 'btn text-white py-2 px-lg-5 col-6 rounded-pill' : 'd-none'} 
-              />
+            />
             <SocialIcons />
           </form>
         </div>

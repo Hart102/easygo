@@ -6,7 +6,7 @@ const NavItem = () => {
     <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block sidebar collapse shadow bg-light1 h-100 pb-5 my-5 p-3 fixed-top" style={{height: '100vh', background: '#212D3B'}}>
       <div className="position-sticky pt-3 sidebar-sticky">
         <div className="nav flex-column">
-          <Link className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.House/>Dashboard</Link>
+          <Link to='/easygo/admin/dashboard' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.House/>Dashboard</Link>
           <Link to='/easygo/admin/dashboard/transactions' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.File/>Tranction History</Link>
           <Link to='/payment' className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.Cart/>Fund wallet</Link>
           <Link className="nav-link active text-light d-flex align-items-center my-1" aria-current="page"><Icon.Person/>Buy Data</Link>
