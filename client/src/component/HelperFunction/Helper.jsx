@@ -30,7 +30,7 @@ export const verify_phone = (number) => {// Phone number validator
   find_characters = /[A-Za-z]/ig; find_special_char = /\W/ig;
   result_1 = phone.match(find_characters);
   result_2 = phone.match(find_special_char);
-  if (result_1 !== null || result_2 !== null) return 'Invalid phone number'
+  if (result_1 !== null || result_2 !== null || phone.length < 11) return 'Invalid phone number'
   return true
 }
 
